@@ -51,4 +51,6 @@ public class Product {
     @Column(nullable = false)
     LocalDateTime updatedAt;
 
+    @Column(nullable = false)
+    private Integer stockAvailable;
 }
