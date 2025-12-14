@@ -30,4 +30,9 @@ public class ProductController {
         return service.getProducts();
     }
 
+    @PostMapping("/productsByIds")
+    public List<Product> getProductsByIds(@RequestBody List<Integer> productIds){
+        return service.getProductsByIds(productIds);
+    }
+
 }
