@@ -81,4 +81,8 @@ public class OrderServices {
         Order order = orderRepo.getByOrderNumber(orderNumber);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
+
+    public List<Order> getAllOrders() {
+        return orderRepo.findAll();
+    }
 }

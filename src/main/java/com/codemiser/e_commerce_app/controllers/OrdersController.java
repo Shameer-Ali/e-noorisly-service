@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
@@ -32,5 +34,10 @@ public class OrdersController {
     @GetMapping("/order-details")
     public ResponseEntity<Order> getOrderByOrderNumber(@RequestParam("orderNumber") String orderNumber) {
         return service.getOrderByOrderNumber(orderNumber);
+    }
+
+    @GetMapping("/orders")
+    public List<Order> getAllOrders(){
+        return  service.getAllOrders();
     }
 }
