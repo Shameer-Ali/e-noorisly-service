@@ -21,4 +21,6 @@ public class AppUser {
     private String password;
     @Column(nullable = false)
     private String role;
+    @Column(unique = true)
+    private String googleSubject;
 }

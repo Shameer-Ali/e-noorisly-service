@@ -59,20 +59,21 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/products/**").hasAnyRole("user", "admin")
-                        .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("admin")
-                        .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("admin")
+                        .requestMatchers(HttpMethod.GET, "/api/products/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
-                                SessionCreationPolicy.STATELESS))
+                                SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(daoAuthenticationProvider)
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
                                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
                         )
                 )
+                .oauth2Login(Customizer.withDefaults())
                 .build();
     }
 
